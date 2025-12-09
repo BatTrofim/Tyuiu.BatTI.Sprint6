@@ -6,18 +6,23 @@ namespace Tyuiu.BatTI.Sprint6.Task4.V6.Lib
     {
         public double[] GetMassFunction(int startValue, int stopValue)
         {
-            double[] res = new double[stopValue - startValue + 1];
-            int k = 0;
-            for (int x = startValue; x < stopValue + 1; x++)
+            int len = stopValue - startValue + 1;
+            double[] mas = new double[len];
+
+            int index = 0;
+            for (int x = startValue; x <= stopValue; x++)
             {
-                if ((3 * x - 1) != 0)
+                if (4 * x - 0.5 == 0)
                 {
-                    res[k] = Math.Round((3 * Math.Cos(x)) / (4 * x - 0.5) + Math.Sin(x) - 5 * x - 2, 2);
-                    k++;
+                    mas[index++] = 0;
                 }
-                else { res[k] = 0; k++; }
+                else
+                {
+                    mas[index++] = Math.Round(3 * Math.Cos(x) / (4 * x - 0.5) + Math.Sin(x) - 5 * x - 2, 2);
+                }
             }
-            return res;
+
+            return mas;
         }
     }
 }

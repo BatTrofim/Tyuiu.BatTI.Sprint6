@@ -6,27 +6,41 @@ namespace Tyuiu.BatTI.Sprint6.Task7.V30.Lib
     {
         public int[,] GetMatrix(string path)
         {
-            string[] lines = File.ReadAllLines(path);
-            int rows = lines.Length;
-
-            int temp;
-
-            int column = lines[0].Split(';').Length;
-
-            int[,] matrix = new int[rows, column];
-
-            for (int i = 0; i < rows; i++)
+            if (!File.Exists(path))
             {
-                string[] values = lines[i].Split(";");
-                for (int j = 0; j < column; j++)
-                {
-                    temp = int.Parse(values[j]);
-
-                    if (j == 0 && temp != 4) matrix[i, j] = 8;
-                    else matrix[i, j] = temp;
-                }
+                throw new FileNotFoundException("Файл не найден.");
             }
+
+            try
+            {
+                string[] lines = File.ReadAllLines(path);
+                int rowCount = lines.Length;
+                int colCount = lines[0].Split(';').Length;
+                int[,] matrix = new int[rowCount, colCount];
+
+                for (int i = 0; i < rowCount; i++)
+                {
+                    int[] rowValues = lines[i].Split(';').Select(int.Parse).ToArray();
+                    for (int j = 0; j < colCount; j++)
+                    {
+                        matrix[i, j] = rowValues[j];
+                    }
+                }
+
+                for (int i = 0; i < rowCount; i++)
+                {
+                    if (matrix[i, 0] != 4)
+                    {
+                        matrix[i, 0] = 8;
+                    }
+                }
             return matrix;
+                
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ошибка обработки файла: " + ex.Message);
+            }
         }
     }
 }
