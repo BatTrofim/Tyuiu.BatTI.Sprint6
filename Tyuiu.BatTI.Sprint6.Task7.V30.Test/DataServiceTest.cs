@@ -9,6 +9,7 @@ namespace Tyuiu.BatTI.Sprint6.Task7.V30.Test
         public void TestMethod1()
         {
             DataService ds = new DataService();
+
         }
     }
 }
