@@ -32,6 +32,7 @@ namespace Tyuiu.BatTI.Sprint6.TaskReview.V23.Test
                 }
             }
             Assert.AreEqual(wait, res);
+
         }
     }
 }
