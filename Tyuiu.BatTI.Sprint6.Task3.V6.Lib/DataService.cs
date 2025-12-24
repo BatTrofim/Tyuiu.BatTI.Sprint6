@@ -6,14 +6,21 @@ namespace Tyuiu.BatTI.Sprint6.Task3.V6.Lib
     {
         public int[,] Calculate(int[,] matrix)
         {
-            for (int i = 2; i <= 2; i++)
+            int rows = matrix.GetUpperBound(0) + 1;
+            int columns = matrix.Length / rows;
+            int count = 0;
+
+            for (int i = 0; i < rows; i++)
             {
-                for (int j = 0; j < matrix.GetLength(1); j++)
+                for (int j = 0; j < columns; j++)
                 {
-                    if (matrix[i, j] % 2 == 0) matrix[i, j] = 0;
+                    if (i == 2 && matrix[i, j] % 2 == 0)
+                    {
+                        matrix[i, j] = 0;
+                    }
                 }
             }
             return matrix;
         }
-    }
+    }   
 }
